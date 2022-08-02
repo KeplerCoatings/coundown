@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Days til we move in</title>
+</head>
+
+<body>
+<style>
+html, body{height: 100%;}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #010101;
+  text-align: center;
+}
+
+h2{
+  color: #f7f7f7;
+  font-size: 56px;
+  font-weight: 300;
+  line-height: 1em;
+  font-family: "Arial", "Sans Serif";
+}
+
+input{
+  font-size: 18px;
+  padding: 12px 20px;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+}
+</style>
+<script>
+const output = document.querySelector("h2");
+
+const countDown = () => {
+  const input = document.querySelector("input");
+  const countDownDate = new Date(input.value).getTime();
+  
+  const now = new Date().getTime();
+  
+  const distance = countDownDate - now;
+  
+  const dd = Math.floor(
+    distance / (1000 * 60 * 60 * 24)
+  );
+
+  const hh = Math.floor(
+    (distance % (1000 * 60 * 60 * 24))/(1000 * 60 * 60)
+  );
+  
+  const mm = Math.floor(
+    (distance % (1000 * 60 * 60)) / (1000 * 60)
+  );
+  
+  const ss = Math.floor(
+    (distance % (1000 * 60)) / 1000
+  );
+  
+  output.innerText = dd + 'd ' + hh + 'h ' + mm + 'm ' + ss +'s';
+
+  if(distance < 0){
+    output.innerText = "Tempo Esgotado!"
+  }
+}
+
+countDown();
+setInterval(countDown,1000);
+</script>
+<div>
+  <h2></h2>
+  <input type='datetime-local' value='2022-08-14T00:00'/>
+</div>
+</body>
+
+</html>
+
+
+       
